@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Roster - Advanced Programming</title>
+    <link rel="stylesheet" href="{{url_for}('static', filename='roster.css')}">
+</head>
+<body>
+    <div class="container">
+        <h1>Class Roser - Advanced Programming</h1>
+        <div class="stats">
+            <strong>Total Students:</strong>{{students|length}}
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birthday</th>
+                    <th>Grade</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for in %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{student.First}}</td>
+                        <td>{{student.Email}}</td>
+                        <td>{{student.Birthday}}</td>
+                        <td>{{student.Grade}}</td>
+                        <td>{{student.Gender}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
