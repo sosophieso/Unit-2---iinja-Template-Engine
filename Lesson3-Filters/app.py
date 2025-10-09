@@ -77,7 +77,7 @@ def statistics():
         "males": males,
         "females": females
     }
-    return render_template('stats.html', students=students)
+    return render_template('stats.html', **data)
 
 if __name__ == '__main__':
     app.run(debug=True)

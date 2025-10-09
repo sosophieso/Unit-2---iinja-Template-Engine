@@ -11,6 +11,15 @@
         <h1>Class Roser - Advanced Programming</h1>
         <div class="stats">
             <strong>Total Students:</strong>{{students|length}}
+            {# Enhanced Statistics with Filters #}
+            <strong>Juniors:</strong>
+            {% set junior_count - students|selectattr('Grade', 'equalto', '11')|list|length %} {{junior_count}}
+
+            <strong>Males:</strong>
+            {% set male_count - students|selectattr('Grade', 'equalto', 'M')|list|length %} {{male_count}}
+
+            <strong>Females:</strong>
+            {% set female_count - students|selectattr('Grade', 'equalto', 'F')|list|length %} {{male_count}}
         </div>
         <table>
             <thead>
@@ -27,15 +36,28 @@
                 {% for in %}
                     <tr>
                         <td>{{loop.index}}</td>
-                        <td>{{student.First}}</td>
+                        <td>{{student.First|upper}} {{student.Last|title}}</td>
                         <td>{{student.Email}}</td>
                         <td>{{student.Birthday}}</td>
                         <td>{{student.Grade}}</td>
-                        <td>{{student.Gender}}</td>
+                        <td class="{% if student.Gender == 'M' %} male {% else %} female {% endif % }">{{student.Gender}}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {# October Birthdays Section #}
+        <h1>📆 October Birthdays</h1>
+        <ul>
+            {% for student in students %}
+                {% if '10-' in students.Birthday or  '-10-' in students.Birthday %}
+                    <li>
+                        🎉{{student.First|title}} {{student.Last|title}} - {{student.Birthday}}
+                    </li>
+                {% endif %}
+            {% else %}
+                <li>No Birthday in this month!</li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
