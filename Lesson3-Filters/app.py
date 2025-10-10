@@ -1,9 +1,8 @@
 from flask import Flask, render_template
 import csv
-
 app = Flask(__name__)
 
-# function to read/import csv to list of dicts
+# Function to read/import csv to list of dicts
 def read_roster():
     students = []
     with open('roster.csv', 'r') as file:
@@ -43,8 +42,8 @@ def home():
         <body>
             <h1>Class Roster Application</h1>
             <p>View the student roster for Advanced Programming</p>
-            <a href="/roster">🫂View Roster</a>
-            <a href="/stats">📈View Stats</a>
+            <a href="/roster">👥View Roster</a>
+            <a href="/stats">📊View Stats</a>
         </body>
     </html>
     '''
@@ -52,30 +51,30 @@ def home():
 @app.route('/roster')
 def roster():
     students = read_roster()
-    print(students)
-    return render_template('roster.html', students=students)
+    # print(students)
+    return render_template('roster.html', students=students)   
 
 @app.route('/stats', methods=['GET'])
 def statistics():
     students = read_roster()
-    # calculate statistics
+    # Calculate statistics
     total = len(students)
-    seniors = [s for s in students if s['Grade'] == 12]
-    juniors = [s for s in students if s['Grade'] == 11]
-    sophomores = [s for s in students if s['Grade'] == 10]
-    freshman = [s for s in students if s['Grade'] == 9]
+    seniors = [s for s in students if s['Grade'] == '12']
+    juniors = [s for s in students if s['Grade'] == '11']
+    sophomores = [s for s in students if s['Grade'] == '10']
+    freshmen = [s for s in students if s['Grade'] == '9']
     males = [s for s in students if s['Gender'] == 'M']
     females = [s for s in students if s['Gender'] == 'F']
-
+    
     data = {
-        "students": students,
-        "total": total,
-        "seniors": seniors,
-        "juniors": juniors,
-        "sophomores": sophomores,
-        "freshmen": freshman,
-        "males": males,
-        "females": females
+    "students": students,
+    "total": total,
+    "seniors": seniors,
+    "juniors": juniors,
+    "sophomores": sophomores,
+    "freshmen": freshmen,
+    "males": males,
+    "females": females
     }
     return render_template('stats.html', **data)
 
