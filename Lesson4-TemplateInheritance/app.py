@@ -78,5 +78,14 @@ def statistics():
     }
     return render_template('stats.html', **data)
 
+@app.route('/student/<int:student_id>')
+def student_detail(student_id):
+    """Show the details of a specific student"""
+    students = read_roster()
+    # Find student by ID (ID is indexed in CSV)
+    if 0 <= student_id <= len(students):
+        student = student[student_id - 1]
+        return render_template()
+
 if __name__ == '__main__':
     app.run(debug=True)

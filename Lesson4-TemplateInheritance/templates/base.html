@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {# Block for custom page title #}
-    <title>
-        {% block title %}
-        Class Roster App
-        {% end block title %}
-    </title>
-    {# Block shared CSS - every page gets this #}
-    <link rel="stylesheet" href="{{url_for('static', filename='roster.css')}}">
-    <link rel="stylesheet" href="{{url_for('static', filename='navbar.css')}}">
+    <title>{% block title %} Class Roster App {% endblock title %}</title>
+    {# shared CSS - every page gets this #}
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='roster.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='navbar.css')}}"
+    />
 
-    {# Block for page-specific CSS #}
-    {% block extra_css %}
-
-    {% endblock extra_css %}
-</head>
-<body>
+    {#Block for page-specific CSS#} {% block extra_css %} {% endblock extra_css
+    %}
+  </head>
+  <body>
     {# Navigation - appears on every page #}
-    <nav>
-        <a href="/">🏠Home</a>
-        <a href="/roster">🫂Roster</a>
-        <a href="/stats">📊Stats</a>
+    <nav><a href="/">🏠Home</a>
+        <a href="/roster">👥Roster</a>
+        <a href="/stats">📊Statistics</a>
     </nav>
 
-    {# Main Content area - child tempaltes fill this #}
+    {# Main Content area - child templates fill this #}
     <div class="container">
         {% block content %}
-        <p>No content provided</p>
+        <p>No Content provided</p>
         {% endblock content %}
-
-        {# Footer - appears on every page #}
+        
+        {# Footer - appears on every page#}
         <footer>
             <p>&copy; 2025 Advanced Programming Class |
             {% block footer %}
@@ -41,5 +40,5 @@
             </p>
         </footer>
     </div>
-</body>
+  </body>
 </html>
